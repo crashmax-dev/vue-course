@@ -1,40 +1,21 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import TodoForm from './todo-form.vue'
 import TodoList from './todo-list.vue'
 import TodoFilter from './todo-filter.vue'
-import { randomToken } from './utils.js'
+import { todosMock } from './utils.js'
 import type { Todo, Filter } from './types.js'
 
-const todosMock: Todo[] = [
-  {
-    id: randomToken(),
-    text: 'Learn Vue 2',
-    completed: true,
-    createdAt: new Date(7, 7, 2023)
-  },
-  {
-    id: randomToken(),
-    text: 'Learn TypeScript',
-    completed: false,
-    createdAt: new Date(10, 10, 2023)
-  },
-  {
-    id: randomToken(),
-    text: 'Learn Vue 3',
-    completed: true,
-    createdAt: new Date(8, 8, 2023)
-  },
-  {
-    id: randomToken(),
-    text: 'Learn Composition API',
-    completed: false,
-    createdAt: new Date(9, 9, 2023)
-  }
-]
+const todosFromLocalStorage = JSON.parse(
+  localStorage.getItem('todos') || '[]'
+) as Todo[]
 
-const todos = ref<Todo[]>(import.meta.env.DEV ? todosMock : [])
+const todos = ref<Todo[]>(import.meta.env.DEV ? todosMock : todosFromLocalStorage)
 const todoFilters = ref<Filter[]>(['all'])
+
+watch(todos.value, () => {
+  localStorage.setItem('todos', JSON.stringify(todos.value))
+})
 
 function remoteTodo(todo: Todo): void {
   todos.value.splice(todos.value.indexOf(todo), 1)
