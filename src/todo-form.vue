@@ -54,7 +54,7 @@ function addTodo(): void {
 }
 
 .form-submit {
-  width: 20%;
+  width: 30%;
 }
 
 .form-submit:disabled {

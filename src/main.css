@@ -9,6 +9,7 @@ body {
   color: #fff;
   font-family: monospace;
   user-select: none;
+  zoom: 150%;
 }
 
 button {
