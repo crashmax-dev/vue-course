@@ -8,13 +8,39 @@ const emit = defineEmits<{ 'remove-todo': [Todo] }>()
 
 <template>
   <ul class="todo-list">
-    <li v-if="!todos.length">Todos are empty</li>
+    <li class="todo-empty" v-if="!todos.length">Todos are empty</li>
     <li v-for="todo in todos" v-bind:key="todo.id">
       <label class="todo-item">
-        <input type="checkbox" v-model="todo.completed" />
-        <span>{{ todo.text }}</span>
+        <input class="todo-checkbox" type="checkbox" v-model="todo.completed" />
+        <span class="todo-text">{{ todo.text }}</span>
         <button v-on:click="emit('remove-todo', todo)">Remove</button>
       </label>
     </li>
   </ul>
 </template>
+
+<style scoped>
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-empty {
+  text-align: center;
+  color: #aaa;
+  font-size: 1.5rem;
+}
+
+.todo-checkbox:checked + .todo-text {
+  text-decoration: line-through;
+}
+</style>

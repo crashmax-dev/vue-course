@@ -17,11 +17,18 @@ const filters = computed({
 </script>
 
 <template>
-  <select v-model="filters" multiple>
+  <select class="filter" v-model="filters" multiple>
     <option v-for="filter in FILTERS" v-bind:value="filter" v-bind:key="filter">
       {{ filter.charAt(0).toUpperCase() + filter.slice(1) }}
     </option>
   </select>
 </template>
 
-<style></style>
+<style scope>
+.filter {
+  width: 100%;
+  margin-top: 1rem;
+  outline: none;
+  overflow: hidden;
+}
+</style>

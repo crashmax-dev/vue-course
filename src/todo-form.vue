@@ -4,28 +4,60 @@ import { randomToken } from './utils.js'
 import type { Todo } from './types.js'
 
 const emit = defineEmits<{ 'add-todo': [Todo] }>()
-const input = ref<HTMLInputElement>()
+const input = ref('')
+const inputRef = ref<HTMLInputElement>()
 
 function addTodo(): void {
-  if (!input.value!.value) return
+  if (!input.value) return
 
   const todo: Todo = {
     id: randomToken(),
-    text: input.value!.value,
+    text: input.value,
     completed: false,
     createdAt: new Date()
   }
 
-  input.value!.value = ''
-  input.value!.focus()
+  input.value = ''
+  inputRef.value!.focus()
 
   emit('add-todo', todo)
 }
 </script>
 
 <template>
-  <form v-on:submit.prevent="addTodo">
-    <input type="text" ref="input" />
-    <button type="submit">Add</button>
+  <form class="form" v-on:submit.prevent="addTodo">
+    <input
+      class="form-input"
+      placeholder="Add a todo"
+      type="text"
+      ref="inputRef"
+      v-model="input"
+    />
+    <button :disabled="!input" class="form-submit" type="submit">Add</button>
   </form>
 </template>
+
+<style scoped>
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+}
+
+.form-submit {
+  width: 20%;
+}
+
+.form-submit:disabled {
+  cursor: not-allowed;
+}
+</style>

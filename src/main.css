@@ -5,7 +5,24 @@
 body {
   margin: 0;
   padding: 1rem;
-  background-color: #333;
+  background-color: #27272a;
   color: #fff;
   font-family: monospace;
+  user-select: none;
+}
+
+button {
+  background: #444;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  font-family: inherit;
+  font-size: inherit;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #555;
 }

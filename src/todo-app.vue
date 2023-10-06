@@ -79,13 +79,3 @@ const filteredTodos = computed(() => {
   />
   <todo-list v-bind:todos="filteredTodos" v-on:remove-todo="remoteTodo" />
 </template>
-
-<style>
-.todo-list {
-  list-style-type: none;
-}
-
-input:checked + span {
-  text-decoration: line-through;
-}
-</style>
