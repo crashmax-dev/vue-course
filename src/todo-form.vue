@@ -27,11 +27,11 @@ function addTodo(): void {
 <template>
   <form class="form" v-on:submit.prevent="addTodo">
     <input
+      ref="inputRef"
+      v-model="input"
       class="form-input"
       placeholder="Add a todo"
       type="text"
-      ref="inputRef"
-      v-model="input"
     />
     <button :disabled="!input" class="form-submit" type="submit">Add</button>
   </form>

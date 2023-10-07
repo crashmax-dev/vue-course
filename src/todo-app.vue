@@ -10,7 +10,9 @@ const todosFromLocalStorage = JSON.parse(
   localStorage.getItem('todos') || '[]'
 ) as Todo[]
 
-const todos = ref<Todo[]>(import.meta.env.DEV ? todosMock : todosFromLocalStorage)
+const todos = ref<Todo[]>(
+  import.meta.env.DEV ? todosMock : todosFromLocalStorage
+)
 const todoFilters = ref<Filter[]>(['all'])
 
 watch(todos.value, () => {
@@ -54,9 +56,6 @@ const filteredTodos = computed(() => {
 
 <template>
   <todo-form v-on:add-todo="todos.push($event)" />
-  <todo-filter
-    v-bind:filters="todoFilters"
-    v-on:update-filters="updateFilters"
-  />
+  <todo-filter v-bind:filters="todoFilters" v-on:update-filters="updateFilters" />
   <todo-list v-bind:todos="filteredTodos" v-on:remove-todo="remoteTodo" />
 </template>

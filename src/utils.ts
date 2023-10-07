@@ -1,4 +1,4 @@
-import type { Todo } from "./types.js"
+import type { Todo } from './types.js'
 
 export function randomToken(): string {
   return Math.random().toString(36).slice(2)

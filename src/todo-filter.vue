@@ -17,8 +17,8 @@ const filters = computed({
 </script>
 
 <template>
-  <select class="filter" v-model="filters" multiple>
-    <option v-for="filter in FILTERS" v-bind:value="filter" v-bind:key="filter">
+  <select v-model="filters" class="filter" multiple>
+    <option v-for="filter in FILTERS" v-bind:key="filter" v-bind:value="filter">
       {{ filter.charAt(0).toUpperCase() + filter.slice(1) }}
     </option>
   </select>

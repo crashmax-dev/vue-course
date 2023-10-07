@@ -8,10 +8,10 @@ const emit = defineEmits<{ 'remove-todo': [Todo] }>()
 
 <template>
   <ul class="todo-list">
-    <li class="todo-empty" v-if="!todos.length">Todos are empty</li>
+    <li v-if="!todos.length" class="todo-empty">Todos are empty</li>
     <li v-for="todo in todos" v-bind:key="todo.id">
       <label class="todo-item">
-        <input class="todo-checkbox" type="checkbox" v-model="todo.completed" />
+        <input v-model="todo.completed" class="todo-checkbox" type="checkbox" />
         <span class="todo-text">{{ todo.text }}</span>
         <button v-on:click="emit('remove-todo', todo)">Remove</button>
       </label>
