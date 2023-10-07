@@ -32,8 +32,9 @@ function addTodo(): void {
       class="form-input"
       placeholder="Add a todo"
       type="text"
+      required
     />
-    <button :disabled="!input" class="form-submit" type="submit">Add</button>
+    <button class="form-submit" type="submit">Add</button>
   </form>
 </template>
 
@@ -55,9 +56,5 @@ function addTodo(): void {
 
 .form-submit {
   width: 30%;
-}
-
-.form-submit:disabled {
-  cursor: not-allowed;
 }
 </style>
