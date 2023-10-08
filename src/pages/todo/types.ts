@@ -2,7 +2,7 @@ export interface Todo {
   id: string
   text: string
   completed: boolean
-  createdAt: Date
+  createdAt: number
 }
 
 export const FILTERS = ['all', 'completed', 'asc', 'desc'] as const

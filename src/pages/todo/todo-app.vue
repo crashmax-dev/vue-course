@@ -3,13 +3,10 @@ import { computed, ref, watch } from 'vue'
 import TodoForm from './todo-form.vue'
 import TodoList from './todo-list.vue'
 import TodoFilter from './todo-filter.vue'
+import { useStorage } from '@vueuse/core'
 import type { Todo, Filter } from './types.js'
 
-const todosFromLocalStorage = JSON.parse(
-  localStorage.getItem('todos') || '[]'
-) as Todo[]
-
-const todos = ref<Todo[]>(todosFromLocalStorage)
+const todos = useStorage<Todo[]>('todos', [])
 const todoFilters = ref<Filter[]>(['all'])
 
 watch(todos.value, () => {
@@ -36,13 +33,13 @@ const filteredTodos = computed(() => {
 
     if (filter === 'asc') {
       filteredTodos = filteredTodos.sort(
-        (a, b) => a.createdAt.getTime() - b.createdAt.getTime()
+        (a, b) => a.createdAt - b.createdAt
       )
     }
 
     if (filter === 'desc') {
       filteredTodos = filteredTodos.sort(
-        (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+        (a, b) => b.createdAt - a.createdAt
       )
     }
   }

@@ -36,7 +36,7 @@ const emit = defineEmits<{ 'remove-todo': [Todo] }>()
 
 .todo-empty {
   text-align: center;
-  color: #aaa;
+  color: var(--text-color);
   font-size: 1.5rem;
 }
 
