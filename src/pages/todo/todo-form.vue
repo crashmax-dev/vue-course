@@ -48,9 +48,15 @@ function addTodo(): void {
 .form-input {
   width: 100%;
   padding: 0.5rem;
-  border: none;
+  border: var(--border-color) 1px solid;
   outline: none;
   border-radius: 0.25rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.form-input::placeholder {
+  color: var(--text-color);
 }
 
 .form-submit {
