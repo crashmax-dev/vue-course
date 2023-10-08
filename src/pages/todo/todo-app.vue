@@ -6,7 +6,7 @@ import TodoFilter from './todo-filter.vue'
 import { useStorage } from '@vueuse/core'
 import type { Todo, Filter } from './types.js'
 
-const todos = useStorage<Todo[]>('todos', [])
+const todos = useStorage<Todo[]>('todo', [])
 const todoFilters = ref<Filter[]>(['all'])
 
 watch(todos.value, () => {
