@@ -3,16 +3,13 @@ import { computed, ref, watch } from 'vue'
 import TodoForm from './todo-form.vue'
 import TodoList from './todo-list.vue'
 import TodoFilter from './todo-filter.vue'
-import { todosMock } from './utils.js'
 import type { Todo, Filter } from './types.js'
 
 const todosFromLocalStorage = JSON.parse(
   localStorage.getItem('todos') || '[]'
 ) as Todo[]
 
-const todos = ref<Todo[]>(
-  import.meta.env.DEV ? todosMock : todosFromLocalStorage
-)
+const todos = ref<Todo[]>(todosFromLocalStorage)
 const todoFilters = ref<Filter[]>(['all'])
 
 watch(todos.value, () => {

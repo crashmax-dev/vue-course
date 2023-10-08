@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { randomToken } from './utils.js'
 import type { Todo } from './types.js'
 
 const emit = defineEmits<{ 'add-todo': [Todo] }>()
@@ -11,7 +10,7 @@ function addTodo(): void {
   if (!input.value) return
 
   const todo: Todo = {
-    id: randomToken(),
+    id: crypto.randomUUID(),
     text: input.value,
     completed: false,
     createdAt: new Date()

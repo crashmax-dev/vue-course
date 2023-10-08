@@ -24,7 +24,7 @@ const filters = computed({
   </select>
 </template>
 
-<style scope>
+<style scoped>
 .filter {
   width: 100%;
   margin-top: 1rem;
