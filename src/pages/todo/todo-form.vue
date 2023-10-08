@@ -3,63 +3,36 @@ import { ref } from 'vue'
 import type { Todo } from './types.js'
 
 const emit = defineEmits<{ 'add-todo': [Todo] }>()
-const input = ref('')
-const inputRef = ref<HTMLInputElement>()
+const inputValue = ref('')
+const inputElement = ref<HTMLInputElement>()
 
 function addTodo(): void {
-  if (!input.value) return
+  if (!inputValue.value) return
 
   const todo: Todo = {
     id: crypto.randomUUID(),
-    text: input.value,
+    text: inputValue.value,
     completed: false,
-    createdAt: new Date()
+    createdAt: Date.now()
   }
 
-  input.value = ''
-  inputRef.value!.focus()
+  inputValue.value = ''
+  inputElement.value!.focus()
 
   emit('add-todo', todo)
 }
 </script>
 
 <template>
-  <form class="form" v-on:submit.prevent="addTodo">
+  <form v-on:submit.prevent="addTodo">
     <input
-      ref="inputRef"
-      v-model="input"
-      class="form-input"
+      ref="inputElement"
+      v-model="inputValue"
       placeholder="Add a todo"
       type="text"
       required
+      autofocus
     />
-    <button class="form-submit" type="submit">Add</button>
+    <button type="submit">Add</button>
   </form>
 </template>
-
-<style scoped>
-.form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.5rem;
-  border: var(--border-color) 1px solid;
-  outline: none;
-  border-radius: 0.25rem;
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.form-input::placeholder {
-  color: var(--text-color);
-}
-
-.form-submit {
-  width: 30%;
-}
-</style>

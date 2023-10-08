@@ -4,19 +4,18 @@ import { toggleTheme } from './theme.js'
 </script>
 
 <template>
-  <div class="links">
-    <button v-for="route in routes" :key="route.path" class="link-button">
-      <router-link v-bind:to="route.path">{{ route.name }}</router-link>
-    </button>
+  <nav>
     <button v-on:click="toggleTheme($event)">Theme</button>
-  </div>
-  <h1>{{ $route.name }}</h1>
+    <template v-for="route in routes" v-bind:key="route.path">
+      <router-link v-bind:to="route.path">
+        <button v-if="route.meta?.showInNav" class="link-button">
+          {{ route.name }}
+        </button>
+      </router-link>
+    </template>
+  </nav>
+  <h1 v-if="$route.meta.showInNav" class="title">
+    {{ $route.name }}
+  </h1>
   <router-view />
 </template>
-
-<style>
-.links {
-  display: flex;
-  gap: 1rem;
-}
-</style>

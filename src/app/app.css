@@ -11,7 +11,7 @@ body {
 
 button {
   height: 2rem;
-  border-radius: 0.25rem;
+  border-radius: var(--border-radius);
   border: var(--border-color) 1px solid;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -28,11 +28,46 @@ a {
   text-decoration: none;
 }
 
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: var(--border-color) 1px solid;
+  outline: none;
+  border-radius: 0.25rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+input[type="text"]::placeholder {
+  color: var(--text-color);
+}
+
+button[type="submit"] {
+  width: 30%;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.title::first-letter {
+  text-transform: capitalize;
+}
+
 /* theme */
 :root {
   --text-color: #000;
   --background-color: #fff;
   --border-color: #000;
+  --border-radius: 0.25rem;
 }
 
 .dark {
