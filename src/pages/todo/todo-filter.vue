@@ -1,34 +1,51 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { FILTERS } from './types.js'
-import type { Filter } from './types.js'
 
-const props = defineProps<{ filters: Filter[] }>()
-const emit = defineEmits<{ 'update-filters': [Filter[]] }>()
+const props = defineProps<{ filters: string[] }>()
+const emit = defineEmits<{ 'update:filters': [string[]] }>()
 
 const filters = computed({
   get() {
     return props.filters
   },
   set(value) {
-    emit('update-filters', value.length ? value : ['all'])
+    emit('update:filters', value.length ? value : ['all'])
   }
 })
 </script>
 
 <template>
-  <select v-model="filters" class="filter" multiple>
-    <option v-for="filter in FILTERS" v-bind:key="filter" v-bind:value="filter">
-      {{ filter.charAt(0).toUpperCase() + filter.slice(1) }}
-    </option>
-  </select>
+  <div class="filters">
+    <label>
+      All
+      <input v-model="filters" type="checkbox" value="all">
+    </label>
+    <label>
+      Completed
+      <input v-model="filters" type="checkbox" value="completed">
+    </label>
+    <label>
+      Asc
+      <input v-model="filters" type="checkbox" value="asc">
+    </label>
+    <label>
+      Desc
+      <input v-model="filters" type="checkbox" value="desc">
+    </label>
+  </div>
 </template>
 
 <style scoped>
-.filter {
-  width: 100%;
+.filters {
   margin-top: 1rem;
-  outline: none;
-  overflow: hidden;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 </style>
