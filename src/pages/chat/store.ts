@@ -29,10 +29,21 @@ export const useChatsStore = defineStore('chats', () => {
     }
   }
 
+  function deleteMessage(chatId: string, messageId: string): void {
+    const chat = getChatById(chatId)
+    if (chat) {
+      const index = chat.messages.findIndex((message) => message.id === messageId)
+      if (index >= 0) {
+        chat.messages.splice(index, 1)
+      }
+    }
+  }
+
   return {
     chats,
     getChatById,
     createChat,
-    deleteChat
+    deleteChat,
+    deleteMessage
   }
 })

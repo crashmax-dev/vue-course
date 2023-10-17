@@ -7,6 +7,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   zoom: 150%;
+  overflow-x: hidden;
 }
 
 button {
