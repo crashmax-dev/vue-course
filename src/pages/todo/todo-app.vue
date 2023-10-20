@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import TodoForm from './todo-form.vue'
 import TodoList from './todo-list.vue'
 import TodoFilter from './todo-filter.vue'
@@ -8,10 +8,6 @@ import type { Todo } from './types.js'
 
 const todos = useStorage<Todo[]>('todo', [])
 const todoFilters = ref(['all'])
-
-watch(todos.value, () => {
-  localStorage.setItem('todos', JSON.stringify(todos.value))
-})
 
 function remoteTodo(todo: Todo): void {
   todos.value.splice(todos.value.indexOf(todo), 1)

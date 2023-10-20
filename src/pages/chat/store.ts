@@ -1,14 +1,9 @@
 import { defineStore } from 'pinia'
-import { watch } from 'vue'
-import { useStorage } from '@vueuse/core'
+import * as vueuse from '@vueuse/core'
 import type { Chat } from './types.js'
 
 export const useChatsStore = defineStore('chats', () => {
-  const chats = useStorage<Chat[]>('chats', [])
-
-  watch(chats, () => {
-    localStorage.setItem('chats', JSON.stringify(chats.value))
-  })
+  const chats = vueuse.useStorage<Chat[]>('chats', [])
 
   function getChatById(chatId: string): Chat | undefined {
     return chats.value.find((chat) => chat.id === chatId)
