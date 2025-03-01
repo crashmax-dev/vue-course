@@ -41,7 +41,7 @@ const filteredTodos = computed(() => {
 </script>
 
 <template>
-  <todo-form v-on:add-todo="todos.push($event)" />
+  <todo-form @add-todo="todos.push($event)" />
   <todo-filter v-model:filters="todoFilters" />
-  <todo-list v-bind:todos="filteredTodos" v-on:remove-todo="remoteTodo" />
+  <todo-list :todos="filteredTodos" v-on:remove-todo="remoteTodo" />
 </template>

@@ -24,6 +24,3 @@ function onSubmit(): void {
     <button type="submit">Create</button>
   </form>
 </template>
-
-<style>
-</style>
